@@ -14,19 +14,19 @@
         font-family: Arial, sans-serif;
     }
 
-    /* ===== AVATAR NỔI BÊN TRÊN ===== */
+    /* ==== THANH AVATAR KIỂU 1 (GIỐNG HÌNH BẠN GỬI) ==== */
     .top-avatar-box {
         position: fixed;
-        top: 10px;                 /* 🔥 chỉnh vị trí avatar ở đây */
+        top: 18px;
         left: 50%;
         transform: translateX(-50%);
-        background: #fff;
-        padding: 6px 18px 6px 8px;
+        background: #ffffff;
+        padding: 6px 18px 6px 10px;
         border-radius: 40px;
         display: flex;
         align-items: center;
         box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-        z-index: 999999999;        /* 🔥 đảm bảo nằm trên LiveChat */
+        z-index: 9999999;
     }
 
     .avatar-wrapper {
@@ -47,8 +47,8 @@
         height: 11px;
         background: #00c853;
         border-radius: 50%;
-        bottom: -1px;
-        right: -1px;
+        bottom: 0px;
+        right: 0px;
         border: 2px solid #fff;
     }
 
@@ -59,7 +59,8 @@
         white-space: nowrap;
     }
 
-    /* ẨN BUBBLE LIVECHAT HOÀN TOÀN */
+
+    /* ==== ẨN BUBBLE LIVECHAT ==== */
     #livechat-compact-container,
     #livechat-eye-catcher,
     #livechat-init,
@@ -70,11 +71,12 @@
         visibility: hidden !important;
         pointer-events: none !important;
     }
+
 </style>
 </head>
 <body>
 
-<!-- 🔥 AVATAR NỔI -->
+<!-- ===== AVATAR TRÊN ĐẦU ===== -->
 <div class="top-avatar-box">
     <div class="avatar-wrapper">
         <img src="avatar.jpg" class="avatar">
@@ -84,31 +86,26 @@
 </div>
 
 
-<!-- ===== LIVECHAT ===== -->
+<!-- ========== LIVECHAT ========== -->
 <script>
 window.__lc = window.__lc || {};
 window.__lc.license = 19355574;
 window.__lc.integration_name = "manual_channels";
 window.__lc.product_name = "livechat";
 
-/* MỞ CHAT WINDOW NGAY LẬP TỨC */
+/* ẨN BUBBLE NGAY LÚC LOAD */
 window.LiveChatWidget = window.LiveChatWidget || {};
 window.LiveChatWidget.on = function(event, callback){
     if(event === "ready") {
-        callback();
-
-        setTimeout(() => {
-            LiveChatWidget.call("maximize");   // 🔥 mở chat ngay lập tức
-        }, 500);
-
-        /* ẨN TOÀN BỘ ICON CHAT */
         const hide = () => {
             try {
                 LiveChatWidget.call("hide");
+                LiveChatWidget.call("hide_chat_window");
             } catch(e){}
         };
-        hide();
-        setInterval(hide, 800);
+        callback();
+        setTimeout(hide, 300);
+        setInterval(hide, 1000);
     }
 };
 </script>
