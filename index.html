@@ -14,7 +14,7 @@
         font-family: Arial, sans-serif;
     }
 
-    /* ==== THANH AVATAR KIỂU 1 (GIỐNG HÌNH BẠN GỬI) ==== */
+    /* === AVATAR KIỂU 1 === */
     .top-avatar-box {
         position: fixed;
         top: 18px;
@@ -26,7 +26,7 @@
         display: flex;
         align-items: center;
         box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-        z-index: 9999999;
+        z-index: 99999999;
     }
 
     .avatar-wrapper {
@@ -59,8 +59,7 @@
         white-space: nowrap;
     }
 
-
-    /* ==== ẨN BUBBLE LIVECHAT ==== */
+    /* ẨN BUBBLE */
     #livechat-compact-container,
     #livechat-eye-catcher,
     #livechat-init,
@@ -71,12 +70,11 @@
         visibility: hidden !important;
         pointer-events: none !important;
     }
-
 </style>
 </head>
 <body>
 
-<!-- ===== AVATAR TRÊN ĐẦU ===== -->
+<!-- AVATAR TRÊN -->
 <div class="top-avatar-box">
     <div class="avatar-wrapper">
         <img src="avatar.jpg" class="avatar">
@@ -85,27 +83,33 @@
     <div class="name">Vision Nguyễn</div>
 </div>
 
-
-<!-- ========== LIVECHAT ========== -->
+<!-- LIVECHAT -->
 <script>
 window.__lc = window.__lc || {};
 window.__lc.license = 19355574;
-window.__lc.integration_name = "manual_channels";
-window.__lc.product_name = "livechat";
 
-/* ẨN BUBBLE NGAY LÚC LOAD */
 window.LiveChatWidget = window.LiveChatWidget || {};
-window.LiveChatWidget.on = function(event, callback){
-    if(event === "ready") {
-        const hide = () => {
+window.LiveChatWidget.on = function (event, callback) {
+    if (event === "ready") {
+        callback();
+
+        /* ẨN BUBBLE */
+        const hideBubble = () => {
             try {
                 LiveChatWidget.call("hide");
-                LiveChatWidget.call("hide_chat_window");
+            } catch (e) {}
+        };
+
+        /* MỞ LUÔN CỬA SỔ CHAT */
+        const openChat = () => {
+            try {
+                LiveChatWidget.call("maximize");
+                LiveChatWidget.call("open_chat_window");
             } catch(e){}
         };
-        callback();
-        setTimeout(hide, 300);
-        setInterval(hide, 1000);
+
+        setTimeout(hideBubble, 200);
+        setTimeout(openChat, 400);   // mở chat sau khi widget load
     }
 };
 </script>
