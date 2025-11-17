@@ -5,11 +5,9 @@
     <title>Tên miền chính hãng HIT.CLUB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="logo_livechat.png">
 
 <style>
-
     body {
         margin: 0;
         padding: 0;
@@ -18,7 +16,6 @@
         font-family: Arial, sans-serif;
     }
 
-    /* === AVATAR KIỂU 1 TRÊN ĐẦU === */
     .top-avatar-box {
         position: fixed;
         top: 18px;
@@ -63,7 +60,7 @@
         white-space: nowrap;
     }
 
-    /* ẨN TOÀN BỘ BUBBLE GÓC */
+    /* ẨN BUBBLE */
     #livechat-compact-container,
     iframe[src*="compact"],
     .lc-compact,
@@ -79,7 +76,6 @@
 </head>
 <body>
 
-<!-- AVATAR KIỂU 1 -->
 <div class="top-avatar-box">
     <div class="avatar-wrapper">
         <img src="avatar.jpg" class="avatar">
@@ -93,30 +89,18 @@
 window.__lc = window.__lc || {};
 window.__lc.license = 19355574;
 
-window.LiveChatWidget = window.LiveChatWidget || {};
-window.LiveChatWidget.on = function (event, callback) {
-    if (event === "ready") {
-        callback();
+window.addEventListener("lc_ready", function () {
 
-        /* ẨN BUBBLE */
-        const hideBubble = () => {
-            try {
-                LiveChatWidget.call("hide");
-            } catch (e) {}
-        };
+    // Ẩn bubble
+    LiveChatWidget.call("hide");
 
-        /* HIỂN THỊ THẲNG CỬA SỔ CHAT */
-        const openChat = () => {
-            try {
-                LiveChatWidget.call("maximize");
-                LiveChatWidget.call("open_chat_window");
-            } catch (e) {}
-        };
+    // Mở luôn cửa sổ chat
+    setTimeout(() => {
+        LiveChatWidget.call("maximize");
+        LiveChatWidget.call("open_chat_window");
+    }, 300);
 
-        setTimeout(hideBubble, 150);
-        setTimeout(openChat, 400); // mở chat sau khi widget load
-    }
-};
+});
 </script>
 
 <script src="https://cdn.livechatinc.com/tracking.js" async></script>
