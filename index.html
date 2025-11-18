@@ -24,10 +24,8 @@
         background: #ffffff;
         padding: 10px 24px;
         border-radius: 40px;
-        display: flex;
-        align-items: center;
         box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-        z-index: 99999999;
+        z-index: 99999;
       }
 
       .name {
@@ -36,24 +34,15 @@
         color: #000;
         white-space: nowrap;
       }
-
-      /* Ẩn avatar/bubble */
-      #livechat-compact-container,
-      #livechat-eye-catcher,
-      div[id*="bubble"],
-      img[src*="avatar"] {
-        display: none !important;
-      }
     </style>
 </head>
 <body>
 
-  <!-- Chỉ hiển thị tên -->
   <div class="top-box">
     <div class="name">Vision Nguyễn</div>
   </div>
 
-  <!-- LIVECHAT CODE CHUẨN -->
+  <!-- LIVECHAT CODE -->
   <script>
       window.__lc = window.__lc || {};
       window.__lc.license = 19355574;
@@ -61,53 +50,31 @@
       window.__lc.product_name = "livechat";
 
       (function(n,t,c){
-          function i(n){return e._h ? e._h.apply(null,n) : e._q.push(n)}
-          var e={
-            _q:[], _h:null, _v:"2.0",
-            on:function(){i(["on",c.call(arguments)])},
-            once:function(){i(["once",c.call(arguments)])},
-            off:function(){i(["off",c.call(arguments)])},
-            get:function(){ if(!e._h) throw new Error("Widget chưa load."); return i(["get",c.call(arguments)])},
-            call:function(){i(["call",c.call(arguments)])},
-            init:function(){
-                var n=t.createElement("script");
-                n.async=true;
-                n.src="https://cdn.livechatinc.com/tracking.js";
-                t.head.appendChild(n);
-            }
+          function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}
+          var e={_q:[],_h:null,_v:"2.0",
+              on:function(){i(["on",c.call(arguments)])},
+              once:function(){i(["once",c.call(arguments)])},
+              off:function(){i(["off",c.call(arguments)])},
+              get:function(){if(!e._h)throw new Error("Widget chưa load.");return i(["get",c.call(arguments)])},
+              call:function(){i(["call",c.call(arguments)])},
+              init:function(){
+                  var n=t.createElement("script");
+                  n.async=true;
+                  n.src="https://cdn.livechatinc.com/tracking.js";
+                  t.head.appendChild(n);
+              }
           };
           !n.__lc.asyncInit && e.init();
           n.LiveChatWidget = n.LiveChatWidget || e;
       })(window,document,[].slice);
   </script>
 
-  <!-- AUTO OPEN + GREETING AN TOÀN 100% -->
+  <!-- AUTO OPEN CHAT -->
   <script>
-      window.addEventListener("load", function() {
-
-          LiveChatWidget.on('ready', function() {
-
-              // Ẩn bubble/avatar
-              try { LiveChatWidget.call('hide'); } catch(e){}
-
-              // Mở chat tự động
-              setTimeout(function(){
-                  try {
-                      LiveChatWidget.call('maximize');
-                      LiveChatWidget.call('open_chat_window');
-                  } catch(e){}
-              }, 500);
-
-              // Lời chào tự động
-              setTimeout(function(){
-                  try {
-                      LiveChatWidget.call('set_custom_variables', {
-                          greeting: "Xin chào! Tôi có thể hỗ trợ gì cho bạn?"
-                      });
-                  } catch(e){}
-              }, 900);
-          });
-
+      LiveChatWidget.on('ready', function() {
+          setTimeout(function(){
+              LiveChatWidget.call('maximize'); // mở ô chat
+          }, 800);
       });
   </script>
 
