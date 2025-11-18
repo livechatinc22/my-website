@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Tên miền chính hãng HIT.CLUB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo_livechat.png">
-
+    <link rel="icon" href="logo_livechat.png" type="image/png" sizes="32x32">
     <style>
       body {
         margin: 0;
@@ -16,53 +13,25 @@
         height: 100vh;
         font-family: Arial, sans-serif;
       }
-
-      /* Avatar ở đầu trang */
       .top-avatar-box {
         position: fixed;
         top: 18px;
         left: 50%;
         transform: translateX(-50%);
         background: #ffffff;
-        padding: 6px 18px 6px 10px;
+        padding: 8px 22px;
         border-radius: 40px;
         display: flex;
         align-items: center;
         box-shadow: 0 4px 14px rgba(0,0,0,0.18);
         z-index: 99999999;
       }
-
-      .avatar-wrapper {
-        position: relative;
-        margin-right: 10px;
-      }
-
-      .avatar {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .dot-online {
-        position: absolute;
-        width: 11px;
-        height: 11px;
-        background: #00c853;
-        border-radius: 50%;
-        bottom: 0px;
-        right: 0px;
-        border: 2px solid #fff;
-      }
-
       .name {
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 600;
         color: #000;
         white-space: nowrap;
       }
-
-      /* Chỉ ẩn bubble nhỏ, giữ cửa sổ chat */
       #livechat-compact-container,
       #livechat-eye-catcher,
       div[id*="bubble"] {
@@ -71,32 +40,17 @@
     </style>
 </head>
 <body>
-
-  <!-- Avatar trên đầu -->
   <div class="top-avatar-box">
-    <div class="avatar-wrapper">
-      <img src="avatar.jpg" class="avatar">
-      <div class="dot-online"></div>
-    </div>
     <div class="name">Vision Nguyễn</div>
   </div>
-
-  <!-- LiveChat Script -->
   <script>
     window.__lc = window.__lc || {};
     window.__lc.license = 19355574;
-
     window.LiveChatWidget = window.LiveChatWidget || {};
     window.LiveChatWidget.on = function (event, callback) {
       if (event === "ready") {
         callback();
-
-        // Ẩn bubble nhỏ
-        try {
-          LiveChatWidget.call("hide");
-        } catch (e) {}
-
-        // Mở cửa số chat lớn
+        try { LiveChatWidget.call("hide"); } catch (e) {}
         setTimeout(function() {
           try {
             LiveChatWidget.call("maximize");
@@ -106,8 +60,6 @@
       }
     };
   </script>
-
   <script src="https://cdn.livechatinc.com/tracking.js" async></script>
-
 </body>
 </html>
