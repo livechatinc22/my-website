@@ -39,7 +39,7 @@
     <!-- START LIVECHAT -->
     <script>
         window.__lc = window.__lc || {};
-        window.__lc.license = 19355574;   // GIẤY PHÉP CỦA BẠN
+        window.__lc.license = 19355574;
         window.__lc.integration_name = "manual_channels";
         window.__lc.product_name = "livechat";
 
@@ -76,11 +76,15 @@
 
         LiveChatWidget.init();
 
-        // TỰ ĐỘNG MỞ LIVECHAT SAU 1 GIÂY
+        // CHỈ MỞ KHI LIVECHAT LOAD THÀNH CÔNG
         LiveChatWidget.on("ready", function() {
-            setTimeout(function() {
-                LiveChatWidget.call("maximize");
-            }, 800);
+            setTimeout(() => {
+                try {
+                    LiveChatWidget.call("maximize");
+                } catch(e) {
+                    console.log("Không mở được LiveChat:", e);
+                }
+            }, 1000);
         });
     </script>
     <!-- END LIVECHAT -->
